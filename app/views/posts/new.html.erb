@@ -1,0 +1,16 @@
+<h3>Create a new post!</h3>
+
+<p>
+	<%= form_for @post do |f| %>
+		<%= f.label :title %>
+		<%= f.text_area :title %>
+		<br/>
+		<%= f.label :url %>
+		<%= f.text_area :url %>
+		<br/>
+		<%= f.label :description %>
+		<%= f.text_area :description %>
+		<br/>
+		<%= f.submit  "Create Post", class: "btn btn-primary" %> 
+	<% end %>
+</p>

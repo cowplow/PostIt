@@ -1,0 +1,25 @@
+<% if @post.errors.any? %>
+  <div class="alert alert-error">
+    <h5>Oops look like something isn't quite right:</h5>
+    <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<p>
+  <%= form_for @post do |f| %>
+    <%= f.label :title %>
+    <%= f.text_area :title %>
+    <br/>
+    <%= f.label :url %>
+    <%= f.text_area :url %>
+    <br/>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+    <br/>
+    <%= f.submit  "Create Post", class: "btn btn-primary" %> 
+  <% end %>
+</p>

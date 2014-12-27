@@ -3117,3 +3117,877 @@ ActionView::Template::Error (undefined method `username' for nil:NilClass):
   Rendered /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (11.9ms)
   Rendered /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (31.7ms)
   Rendered /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (216.7ms)
+  [1m[36mPost Load (11.5ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mPost Load (10.1ms)[0m  SELECT "posts".* FROM "posts"
+  [1m[36m (9.9ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (11.0ms)[0m  DELETE FROM "posts" WHERE "posts"."id" = ?  [["id", 2]]
+  [1m[36m (20.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mPost Load (10.7ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36m (2.6ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (2.4ms)[0m  DELETE FROM "posts" WHERE "posts"."id" = ?  [["id", 3]]
+  [1m[36m (21.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mPost Load (3.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36m (0.8ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (2.2ms)[0m  DELETE FROM "posts" WHERE "posts"."id" = ?  [["id", 4]]
+  [1m[36m (18.5ms)[0m  [1mcommit transaction[0m
+  [1m[35mPost Load (0.2ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36m (3.5ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (2.1ms)[0m  DELETE FROM "posts" WHERE "posts"."id" = ?  [["id", 5]]
+  [1m[36m (27.3ms)[0m  [1mcommit transaction[0m
+  [1m[35mPost Load (10.1ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36mPost Load (8.2ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-25 20:42:08 -0500
+Processing by PostsController#index as HTML
+  Rendered shared/_content_title.html.erb (0.8ms)
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts"
+  [1m[36mCategory Load (0.5ms)[0m  [1mSELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?[0m  [["post_id", 1]]
+  Rendered categories/_category.html.erb (0.4ms)
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 1]]
+  Rendered posts/index.html.erb within layouts/application (156.8ms)
+  Rendered layouts/_navigation.html.erb (0.5ms)
+  Rendered layouts/_messages.html.erb (0.4ms)
+Completed 200 OK in 234ms (Views: 195.7ms | ActiveRecord: 7.0ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2014-12-25 20:42:13 -0500
+Processing by PostsController#new as HTML
+  Rendered posts/new.html.erb within layouts/application (18.7ms)
+  Rendered layouts/_navigation.html.erb (0.4ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 43ms (Views: 41.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/posts" for 127.0.0.1 at 2014-12-25 20:42:28 -0500
+Processing by PostsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KVFjK9hCLKWDUrhokszxLFHXhnetZ8jgW1GGd0eeris=", "post"=>{"title"=>"2nd post?", "url"=>"projecteuler.net", "description"=>"math!"}, "commit"=>"Create Post"}
+  [1m[35m (7.2ms)[0m  begin transaction
+  [1m[36mSQL (7.3ms)[0m  [1mINSERT INTO "posts" ("created_at", "description", "title", "updated_at", "url", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Fri, 26 Dec 2014 01:42:29 UTC +00:00], ["description", "math!"], ["title", "2nd post?"], ["updated_at", Fri, 26 Dec 2014 01:42:29 UTC +00:00], ["url", "projecteuler.net"], ["user_id", 1]]
+  [1m[35m (19.0ms)[0m  commit transaction
+Completed 500 Internal Server Error in 127ms
+
+NoMethodError (undefined method `redirect' for #<PostsController:0x007fbac69b56d0>):
+  app/controllers/posts_controller.rb:19:in `create'
+
+
+  Rendered /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.5ms)
+  Rendered /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.5ms)
+  Rendered /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.5ms)
+  Rendered /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (46.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-25 20:44:05 -0500
+Processing by PostsController#index as HTML
+  Rendered shared/_content_title.html.erb (0.2ms)
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+  [1m[35mCategory Load (0.5ms)[0m  SELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?  [["post_id", 1]]
+  Rendered categories/_category.html.erb (0.4ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 1]]
+  [1m[36mCategory Load (3.4ms)[0m  [1mSELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?[0m  [["post_id", 6]]
+  Rendered collection (0.1ms)
+  [1m[35mCACHE (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 6]]
+  Rendered posts/index.html.erb within layouts/application (345.1ms)
+  Rendered layouts/_navigation.html.erb (0.4ms)
+  Rendered layouts/_messages.html.erb (0.6ms)
+Completed 200 OK in 495ms (Views: 391.2ms | ActiveRecord: 40.2ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2014-12-25 20:44:14 -0500
+Processing by PostsController#new as HTML
+  Rendered posts/new.html.erb within layouts/application (29.1ms)
+  Rendered layouts/_navigation.html.erb (1.2ms)
+  Rendered layouts/_messages.html.erb (0.8ms)
+Completed 200 OK in 161ms (Views: 105.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/posts" for 127.0.0.1 at 2014-12-25 20:44:37 -0500
+Processing by PostsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KVFjK9hCLKWDUrhokszxLFHXhnetZ8jgW1GGd0eeris=", "post"=>{"title"=>"3rd", "url"=>"gravy.com", "description"=>"is redirect working?"}, "commit"=>"Create Post"}
+  [1m[35m (5.8ms)[0m  begin transaction
+  [1m[36mSQL (8.1ms)[0m  [1mINSERT INTO "posts" ("created_at", "description", "title", "updated_at", "url", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Fri, 26 Dec 2014 01:44:37 UTC +00:00], ["description", "is redirect working?"], ["title", "3rd"], ["updated_at", Fri, 26 Dec 2014 01:44:37 UTC +00:00], ["url", "gravy.com"], ["user_id", 1]]
+  [1m[35m (23.1ms)[0m  commit transaction
+Redirected to http://localhost:3000/posts
+Completed 302 Found in 128ms (ActiveRecord: 37.0ms)
+
+
+Started GET "/posts" for 127.0.0.1 at 2014-12-25 20:44:37 -0500
+Processing by PostsController#index as HTML
+  Rendered shared/_content_title.html.erb (1.7ms)
+  [1m[36mPost Load (0.7ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+  [1m[35mCategory Load (0.2ms)[0m  SELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?  [["post_id", 1]]
+  Rendered categories/_category.html.erb (0.4ms)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 1]]
+  [1m[36mCategory Load (0.3ms)[0m  [1mSELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?[0m  [["post_id", 6]]
+  Rendered collection (0.1ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 6]]
+  [1m[35mCategory Load (0.3ms)[0m  SELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?  [["post_id", 7]]
+  Rendered collection (0.0ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 7]]
+  Rendered posts/index.html.erb within layouts/application (61.8ms)
+  Rendered layouts/_navigation.html.erb (0.8ms)
+  Rendered layouts/_messages.html.erb (0.8ms)
+Completed 200 OK in 113ms (Views: 108.2ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2014-12-25 20:46:39 -0500
+Processing by PostsController#new as HTML
+  Rendered posts/new.html.erb within layouts/application (66.4ms)
+  Rendered layouts/_navigation.html.erb (0.7ms)
+  Rendered layouts/_messages.html.erb (0.8ms)
+Completed 200 OK in 186ms (Views: 106.2ms | ActiveRecord: 4.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-25 20:46:43 -0500
+Processing by PostsController#index as HTML
+  Rendered shared/_content_title.html.erb (0.7ms)
+  [1m[36mPost Load (11.9ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+  [1m[35mCategory Load (0.7ms)[0m  SELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?  [["post_id", 1]]
+  Rendered categories/_category.html.erb (0.4ms)
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 1]]
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?[0m  [["post_id", 6]]
+  Rendered collection (0.0ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 6]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?  [["post_id", 7]]
+  Rendered collection (0.0ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 7]]
+  Rendered posts/index.html.erb within layouts/application (286.3ms)
+  Rendered layouts/_navigation.html.erb (0.5ms)
+  Rendered layouts/_messages.html.erb (0.3ms)
+Completed 200 OK in 345ms (Views: 316.0ms | ActiveRecord: 18.8ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2014-12-26 19:22:41 -0500
+Processing by PostsController#new as HTML
+  Rendered posts/new.html.erb within layouts/application (39.3ms)
+Completed 500 Internal Server Error in 147ms
+
+ActionView::Template::Error (Missing partial posts/form, application/form with {:locale=>[:en], :formats=>[:html, :xml], :handlers=>[:erb, :builder, :raw, :ruby, :jbuilder, :coffee]}. Searched in:
+  * "/home/getthatrice/Desktop/postit-template/app/views"
+):
+    1: <h3>Create a new post!</h3>
+    2: 
+    3: <%= render 'form' %>
+  app/views/posts/new.html.erb:3:in `_app_views_posts_new_html_erb___4505612706177351291_70220077271840'
+
+
+  Rendered /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (7.1ms)
+  Rendered /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (28.6ms)
+  Rendered /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (55.4ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2014-12-26 19:22:49 -0500
+Processing by PostsController#new as HTML
+  Rendered posts/new.html.erb within layouts/application (3.9ms)
+Completed 500 Internal Server Error in 369ms
+
+ActionView::Template::Error (Missing partial posts/form, application/form with {:locale=>[:en], :formats=>[:html, :xml], :handlers=>[:erb, :builder, :raw, :ruby, :jbuilder, :coffee]}. Searched in:
+  * "/home/getthatrice/Desktop/postit-template/app/views"
+):
+    1: <h3>Create a new post!</h3>
+    2: 
+    3: <%= render 'form' %>
+  app/views/posts/new.html.erb:3:in `_app_views_posts_new_html_erb___4505612706177351291_70220077271840'
+
+
+  Rendered /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.7ms)
+  Rendered /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.2ms)
+  Rendered /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (21.8ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2014-12-26 19:22:52 -0500
+Processing by PostsController#new as HTML
+  Rendered posts/new.html.erb within layouts/application (2.6ms)
+Completed 500 Internal Server Error in 11ms
+
+ActionView::Template::Error (Missing partial posts/form, application/form with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :raw, :ruby, :jbuilder, :coffee]}. Searched in:
+  * "/home/getthatrice/Desktop/postit-template/app/views"
+):
+    1: <h3>Create a new post!</h3>
+    2: 
+    3: <%= render 'form' %>
+  app/views/posts/new.html.erb:3:in `_app_views_posts_new_html_erb___4505612706177351291_70220088428820'
+
+
+  Rendered /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.8ms)
+  Rendered /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.7ms)
+  Rendered /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (51.9ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2014-12-26 19:24:45 -0500
+Processing by PostsController#new as HTML
+  Rendered posts/_form.html.erb (146.6ms)
+  Rendered posts/new.html.erb within layouts/application (164.6ms)
+  Rendered layouts/_navigation.html.erb (20.2ms)
+  Rendered layouts/_messages.html.erb (1.6ms)
+Completed 200 OK in 437ms (Views: 404.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/posts/edit" for 127.0.0.1 at 2014-12-26 19:26:56 -0500
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"edit"}
+  [1m[36mPost Load (33.5ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", "edit"]]
+Completed 404 Not Found in 95ms
+
+ActiveRecord::RecordNotFound (Couldn't find Post with id=edit):
+  app/controllers/posts_controller.rb:7:in `show'
+
+
+  Rendered /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.1ms)
+  Rendered /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (20.0ms)
+  Rendered /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (10.1ms)
+  Rendered /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (140.5ms)
+
+
+Started GET "/posts/" for 127.0.0.1 at 2014-12-26 19:27:23 -0500
+Processing by PostsController#index as HTML
+  Rendered shared/_content_title.html.erb (0.8ms)
+  [1m[35mPost Load (16.3ms)[0m  SELECT "posts".* FROM "posts"
+  [1m[36mCategory Load (2.1ms)[0m  [1mSELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?[0m  [["post_id", 1]]
+  Rendered categories/_category.html.erb (0.7ms)
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 1]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?  [["post_id", 6]]
+  Rendered collection (0.0ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 6]]
+  [1m[36mCategory Load (0.4ms)[0m  [1mSELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?[0m  [["post_id", 7]]
+  Rendered collection (0.0ms)
+  [1m[35mCACHE (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 7]]
+  Rendered posts/index.html.erb within layouts/application (278.2ms)
+  Rendered layouts/_navigation.html.erb (1.4ms)
+  Rendered layouts/_messages.html.erb (1.2ms)
+Completed 200 OK in 472ms (Views: 425.4ms | ActiveRecord: 20.7ms)
+
+
+Started GET "/posts/1" for 127.0.0.1 at 2014-12-26 20:05:31 -0500
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (8.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mCategory Load (0.3ms)[0m  [1mSELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?[0m  [["post_id", 1]]
+  Rendered categories/_category.html.erb (0.6ms)
+  Rendered shared/_content_title.html.erb (0.2ms)
+  Rendered posts/show.html.erb within layouts/application (36.7ms)
+  Rendered layouts/_navigation.html.erb (0.6ms)
+  Rendered layouts/_messages.html.erb (0.7ms)
+Completed 200 OK in 140ms (Views: 109.0ms | ActiveRecord: 8.6ms)
+
+
+Started GET "/posts/1" for 127.0.0.1 at 2014-12-26 20:06:05 -0500
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (17.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", "1"]]
+ERROR: compiling _app_views_posts_show_html_erb__4119951824785642520_70220087487900 RAISED /home/getthatrice/Desktop/postit-template/app/views/posts/show.html.erb:12: syntax error, unexpected tIDENTIFIER, expecting ')'
+... link_to "Edit?" edit_post_path(@post) );@output_buffer.safe...
+...                               ^
+Function body:           def _app_views_posts_show_html_erb__4119951824785642520_70220087487900(local_assigns, output_buffer)
+            _old_virtual_path, @virtual_path = @virtual_path, "posts/show";_old_output_buffer = @output_buffer;;@output_buffer = output_buffer || ActionView::OutputBuffer.new;@output_buffer.safe_append='<p>
+  ';@output_buffer.append=( render @post.categories );@output_buffer.safe_append='
+</p>
+
+';@output_buffer.append=( render 'shared/content_title', title: @post.title );@output_buffer.safe_append='
+
+<p>
+  ';@output_buffer.append=( @post.description );@output_buffer.safe_append='
+</p>
+
+<p>
+	';@output_buffer.append=( link_to "Edit?" edit_post_path(@post) );@output_buffer.safe_append=' 
+';@output_buffer.safe_append='</p>
+<hr/>';@output_buffer.to_s
+          ensure
+            @virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+
+Backtrace: /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_view/template.rb:299:in `module_eval'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_view/template.rb:299:in `compile'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_view/template.rb:248:in `block in compile!'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_view/template.rb:236:in `synchronize'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_view/template.rb:236:in `compile!'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_view/template.rb:142:in `block in render'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/activesupport-4.0.0/lib/active_support/notifications.rb:161:in `instrument'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_view/template.rb:141:in `render'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_view/renderer/template_renderer.rb:49:in `block (2 levels) in render_template'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/activesupport-4.0.0/lib/active_support/notifications.rb:159:in `block in instrument'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/activesupport-4.0.0/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/activesupport-4.0.0/lib/active_support/notifications.rb:159:in `instrument'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_view/renderer/template_renderer.rb:48:in `block in render_template'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_view/renderer/template_renderer.rb:56:in `render_with_layout'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_view/renderer/template_renderer.rb:47:in `render_template'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_view/renderer/template_renderer.rb:17:in `render'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_view/renderer/renderer.rb:42:in `render_template'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_view/renderer/renderer.rb:23:in `render'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/abstract_controller/rendering.rb:127:in `_render_template'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_controller/metal/streaming.rb:219:in `_render_template'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/abstract_controller/rendering.rb:120:in `render_to_body'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_controller/metal/rendering.rb:33:in `render_to_body'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_controller/metal/renderers.rb:26:in `render_to_body'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/abstract_controller/rendering.rb:97:in `render'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_controller/metal/rendering.rb:16:in `render'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_controller/metal/instrumentation.rb:41:in `block (2 levels) in render'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/activesupport-4.0.0/lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/2.1.0/benchmark.rb:294:in `realtime'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/activesupport-4.0.0/lib/active_support/core_ext/benchmark.rb:12:in `ms'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_controller/metal/instrumentation.rb:41:in `block in render'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_controller/metal/instrumentation.rb:84:in `cleanup_view_runtime'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/activerecord-4.0.0/lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_controller/metal/instrumentation.rb:40:in `render'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/abstract_controller/base.rb:189:in `process_action'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_controller/metal/rendering.rb:10:in `process_action'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/activesupport-4.0.0/lib/active_support/callbacks.rb:403:in `_run__3731220231815797253__process_action__callbacks'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/activesupport-4.0.0/lib/active_support/callbacks.rb:80:in `run_callbacks'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_controller/metal/rescue.rb:29:in `process_action'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/activesupport-4.0.0/lib/active_support/notifications.rb:159:in `block in instrument'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/activesupport-4.0.0/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/activesupport-4.0.0/lib/active_support/notifications.rb:159:in `instrument'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_controller/metal/params_wrapper.rb:245:in `process_action'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/activerecord-4.0.0/lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/abstract_controller/base.rb:136:in `process'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/abstract_controller/rendering.rb:44:in `process'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_controller/metal.rb:195:in `dispatch'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_controller/metal.rb:231:in `block in action'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/routing/route_set.rb:80:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/routing/route_set.rb:80:in `dispatch'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/routing/route_set.rb:48:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/journey/router.rb:71:in `block in call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/journey/router.rb:59:in `each'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/journey/router.rb:59:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/routing/route_set.rb:655:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/rack-1.5.2/lib/rack/etag.rb:23:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/rack-1.5.2/lib/rack/conditionalget.rb:25:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/rack-1.5.2/lib/rack/head.rb:11:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/flash.rb:241:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/rack-1.5.2/lib/rack/session/abstract/id.rb:225:in `context'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/rack-1.5.2/lib/rack/session/abstract/id.rb:220:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/cookies.rb:486:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/activerecord-4.0.0/lib/active_record/query_cache.rb:36:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/activerecord-4.0.0/lib/active_record/connection_adapters/abstract/connection_pool.rb:626:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/activerecord-4.0.0/lib/active_record/migration.rb:369:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/activesupport-4.0.0/lib/active_support/callbacks.rb:373:in `_run__76035767482634386__call__callbacks'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/activesupport-4.0.0/lib/active_support/callbacks.rb:80:in `run_callbacks'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/reloader.rb:64:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/railties-4.0.0/lib/rails/rack/logger.rb:38:in `call_app'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/railties-4.0.0/lib/rails/rack/logger.rb:21:in `block in call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/activesupport-4.0.0/lib/active_support/tagged_logging.rb:67:in `block in tagged'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/activesupport-4.0.0/lib/active_support/tagged_logging.rb:25:in `tagged'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/activesupport-4.0.0/lib/active_support/tagged_logging.rb:67:in `tagged'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/railties-4.0.0/lib/rails/rack/logger.rb:21:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/quiet_assets-1.0.2/lib/quiet_assets.rb:18:in `call_with_quiet_assets'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/request_id.rb:21:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/rack-1.5.2/lib/rack/methodoverride.rb:21:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/rack-1.5.2/lib/rack/runtime.rb:17:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/activesupport-4.0.0/lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/rack-1.5.2/lib/rack/lock.rb:17:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/static.rb:64:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/railties-4.0.0/lib/rails/engine.rb:511:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/railties-4.0.0/lib/rails/application.rb:97:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/rack-1.5.2/lib/rack/lock.rb:17:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/rack-1.5.2/lib/rack/content_length.rb:14:in `call'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/rack-1.5.2/lib/rack/handler/webrick.rb:60:in `service'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+/home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+  Rendered posts/show.html.erb within layouts/application (68.2ms)
+Completed 500 Internal Server Error in 223ms
+
+ActionView::Template::Error (/home/getthatrice/Desktop/postit-template/app/views/posts/show.html.erb:12: syntax error, unexpected tIDENTIFIER, expecting ')'
+... link_to "Edit?" edit_post_path(@post) );@output_buffer.safe...
+...                               ^):
+     9: </p>
+    10: 
+    11: <p>
+    12: 	<%= link_to "Edit?" edit_post_path(@post) %> 
+    13: </p>
+    14: <hr/>
+  actionpack (4.0.0) lib/action_view/template.rb:299:in `module_eval'
+  actionpack (4.0.0) lib/action_view/template.rb:299:in `compile'
+  actionpack (4.0.0) lib/action_view/template.rb:248:in `block in compile!'
+  actionpack (4.0.0) lib/action_view/template.rb:236:in `synchronize'
+  actionpack (4.0.0) lib/action_view/template.rb:236:in `compile!'
+  actionpack (4.0.0) lib/action_view/template.rb:142:in `block in render'
+  activesupport (4.0.0) lib/active_support/notifications.rb:161:in `instrument'
+  actionpack (4.0.0) lib/action_view/template.rb:141:in `render'
+  actionpack (4.0.0) lib/action_view/renderer/template_renderer.rb:49:in `block (2 levels) in render_template'
+  actionpack (4.0.0) lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+  activesupport (4.0.0) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.0.0) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.0.0) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.0.0) lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+  actionpack (4.0.0) lib/action_view/renderer/template_renderer.rb:48:in `block in render_template'
+  actionpack (4.0.0) lib/action_view/renderer/template_renderer.rb:56:in `render_with_layout'
+  actionpack (4.0.0) lib/action_view/renderer/template_renderer.rb:47:in `render_template'
+  actionpack (4.0.0) lib/action_view/renderer/template_renderer.rb:17:in `render'
+  actionpack (4.0.0) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionpack (4.0.0) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionpack (4.0.0) lib/abstract_controller/rendering.rb:127:in `_render_template'
+  actionpack (4.0.0) lib/action_controller/metal/streaming.rb:219:in `_render_template'
+  actionpack (4.0.0) lib/abstract_controller/rendering.rb:120:in `render_to_body'
+  actionpack (4.0.0) lib/action_controller/metal/rendering.rb:33:in `render_to_body'
+  actionpack (4.0.0) lib/action_controller/metal/renderers.rb:26:in `render_to_body'
+  actionpack (4.0.0) lib/abstract_controller/rendering.rb:97:in `render'
+  actionpack (4.0.0) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.0.0) lib/action_controller/metal/instrumentation.rb:41:in `block (2 levels) in render'
+  activesupport (4.0.0) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/2.1.0/benchmark.rb:294:in `realtime'
+  activesupport (4.0.0) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.0.0) lib/action_controller/metal/instrumentation.rb:41:in `block in render'
+  actionpack (4.0.0) lib/action_controller/metal/instrumentation.rb:84:in `cleanup_view_runtime'
+  activerecord (4.0.0) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.0.0) lib/action_controller/metal/instrumentation.rb:40:in `render'
+  actionpack (4.0.0) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.0.0) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.0.0) lib/abstract_controller/base.rb:189:in `process_action'
+  actionpack (4.0.0) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.0.0) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (4.0.0) lib/active_support/callbacks.rb:403:in `_run__3731220231815797253__process_action__callbacks'
+  activesupport (4.0.0) lib/active_support/callbacks.rb:80:in `run_callbacks'
+  actionpack (4.0.0) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (4.0.0) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.0.0) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.0.0) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.0.0) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.0.0) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.0.0) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.0.0) lib/action_controller/metal/params_wrapper.rb:245:in `process_action'
+  activerecord (4.0.0) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.0.0) lib/abstract_controller/base.rb:136:in `process'
+  actionpack (4.0.0) lib/abstract_controller/rendering.rb:44:in `process'
+  actionpack (4.0.0) lib/action_controller/metal.rb:195:in `dispatch'
+  actionpack (4.0.0) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.0.0) lib/action_controller/metal.rb:231:in `block in action'
+  actionpack (4.0.0) lib/action_dispatch/routing/route_set.rb:80:in `call'
+  actionpack (4.0.0) lib/action_dispatch/routing/route_set.rb:80:in `dispatch'
+  actionpack (4.0.0) lib/action_dispatch/routing/route_set.rb:48:in `call'
+  actionpack (4.0.0) lib/action_dispatch/journey/router.rb:71:in `block in call'
+  actionpack (4.0.0) lib/action_dispatch/journey/router.rb:59:in `each'
+  actionpack (4.0.0) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.0.0) lib/action_dispatch/routing/route_set.rb:655:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/flash.rb:241:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/cookies.rb:486:in `call'
+  activerecord (4.0.0) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.0.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:626:in `call'
+  activerecord (4.0.0) lib/active_record/migration.rb:369:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.0.0) lib/active_support/callbacks.rb:373:in `_run__76035767482634386__call__callbacks'
+  activesupport (4.0.0) lib/active_support/callbacks.rb:80:in `run_callbacks'
+  actionpack (4.0.0) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/reloader.rb:64:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.0) lib/rails/rack/logger.rb:21:in `block in call'
+  activesupport (4.0.0) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.0) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.0) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.0) lib/rails/rack/logger.rb:21:in `call'
+  quiet_assets (1.0.2) lib/quiet_assets.rb:18:in `call_with_quiet_assets'
+  actionpack (4.0.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.0) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/static.rb:64:in `call'
+  railties (4.0.0) lib/rails/engine.rb:511:in `call'
+  railties (4.0.0) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (19.4ms)
+  Rendered /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (20.1ms)
+  Rendered /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (121.4ms)
+
+
+Started GET "/posts/1" for 127.0.0.1 at 2014-12-26 20:06:20 -0500
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (14.8ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mCategory Load (0.2ms)[0m  SELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?  [["post_id", 1]]
+  Rendered categories/_category.html.erb (0.6ms)
+  Rendered shared/_content_title.html.erb (3.2ms)
+  Rendered posts/show.html.erb within layouts/application (129.8ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (2.3ms)
+Completed 200 OK in 371ms (Views: 283.3ms | ActiveRecord: 15.0ms)
+
+
+Started GET "/posts/1/edit" for 127.0.0.1 at 2014-12-26 20:06:25 -0500
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (9.0ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered posts/_form.html.erb (19.2ms)
+  Rendered posts/edit.html.erb within layouts/application (41.3ms)
+  Rendered layouts/_navigation.html.erb (1.0ms)
+  Rendered layouts/_messages.html.erb (0.9ms)
+Completed 200 OK in 142ms (Views: 76.9ms | ActiveRecord: 9.0ms)
+
+
+Started GET "/posts/1/edit" for 127.0.0.1 at 2014-12-26 20:06:38 -0500
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (11.7ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered posts/_form.html.erb (26.7ms)
+  Rendered posts/edit.html.erb within layouts/application (61.1ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.7ms)
+Completed 200 OK in 165ms (Views: 128.4ms | ActiveRecord: 11.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-26 20:07:02 -0500
+Processing by PostsController#index as HTML
+  Rendered shared/_content_title.html.erb (0.8ms)
+  [1m[36mPost Load (25.0ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+  [1m[35mCategory Load (0.5ms)[0m  SELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?  [["post_id", 1]]
+  Rendered categories/_category.html.erb (0.6ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 1]]
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?[0m  [["post_id", 6]]
+  Rendered collection (0.0ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 6]]
+  [1m[35mCategory Load (0.2ms)[0m  SELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?  [["post_id", 7]]
+  Rendered collection (0.0ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 7]]
+  Rendered posts/index.html.erb within layouts/application (98.7ms)
+  Rendered layouts/_navigation.html.erb (0.7ms)
+  Rendered layouts/_messages.html.erb (0.7ms)
+Completed 200 OK in 177ms (Views: 115.9ms | ActiveRecord: 26.7ms)
+
+
+Started GET "/posts/6" for 127.0.0.1 at 2014-12-26 20:07:42 -0500
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mPost Load (9.9ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", "6"]]
+  [1m[35mCategory Load (0.3ms)[0m  SELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?  [["post_id", 6]]
+  Rendered collection (0.1ms)
+  Rendered shared/_content_title.html.erb (0.5ms)
+  Rendered posts/show.html.erb within layouts/application (46.9ms)
+  Rendered layouts/_navigation.html.erb (0.8ms)
+  Rendered layouts/_messages.html.erb (1.3ms)
+Completed 200 OK in 270ms (Views: 153.7ms | ActiveRecord: 10.2ms)
+
+
+Started GET "/posts/6/edit" for 127.0.0.1 at 2014-12-26 20:07:49 -0500
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mPost Load (1.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", "6"]]
+  Rendered posts/_form.html.erb (22.3ms)
+  Rendered posts/edit.html.erb within layouts/application (43.4ms)
+  Rendered layouts/_navigation.html.erb (1.0ms)
+  Rendered layouts/_messages.html.erb (0.8ms)
+Completed 200 OK in 106ms (Views: 76.5ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-26 20:08:07 -0500
+Processing by PostsController#index as HTML
+  Rendered shared/_content_title.html.erb (0.6ms)
+  [1m[35mPost Load (0.7ms)[0m  SELECT "posts".* FROM "posts"
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?[0m  [["post_id", 1]]
+  Rendered categories/_category.html.erb (0.3ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 1]]
+  [1m[35mCategory Load (0.2ms)[0m  SELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?  [["post_id", 6]]
+  Rendered collection (0.0ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 6]]
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?[0m  [["post_id", 7]]
+  Rendered collection (0.0ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 7]]
+  Rendered posts/index.html.erb within layouts/application (52.3ms)
+  Rendered layouts/_navigation.html.erb (0.4ms)
+  Rendered layouts/_messages.html.erb (0.2ms)
+Completed 200 OK in 83ms (Views: 75.3ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/posts/7" for 127.0.0.1 at 2014-12-26 20:08:09 -0500
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", "7"]]
+  [1m[36mCategory Load (0.3ms)[0m  [1mSELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?[0m  [["post_id", 7]]
+  Rendered collection (0.0ms)
+  Rendered shared/_content_title.html.erb (0.1ms)
+  Rendered posts/show.html.erb within layouts/application (7.1ms)
+  Rendered layouts/_navigation.html.erb (0.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 39ms (Views: 36.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/posts/7/edit" for 127.0.0.1 at 2014-12-26 20:08:11 -0500
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"7"}
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", "7"]]
+  Rendered posts/_form.html.erb (90.4ms)
+  Rendered posts/edit.html.erb within layouts/application (92.1ms)
+  Rendered layouts/_navigation.html.erb (0.4ms)
+  Rendered layouts/_messages.html.erb (0.3ms)
+Completed 200 OK in 117ms (Views: 109.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-26 20:08:16 -0500
+Processing by PostsController#index as HTML
+  Rendered shared/_content_title.html.erb (0.1ms)
+  [1m[36mPost Load (0.2ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+  [1m[35mCategory Load (0.2ms)[0m  SELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?  [["post_id", 1]]
+  Rendered categories/_category.html.erb (0.2ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 1]]
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?[0m  [["post_id", 6]]
+  Rendered collection (0.0ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 6]]
+  [1m[35mCategory Load (1.2ms)[0m  SELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?  [["post_id", 7]]
+  Rendered collection (0.0ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 7]]
+  Rendered posts/index.html.erb within layouts/application (32.4ms)
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 51ms (Views: 42.8ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/posts/6" for 127.0.0.1 at 2014-12-26 20:09:48 -0500
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mPost Load (0.2ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", "6"]]
+  [1m[35mCategory Load (0.2ms)[0m  SELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?  [["post_id", 6]]
+  Rendered collection (0.1ms)
+  Rendered shared/_content_title.html.erb (0.2ms)
+  Rendered posts/show.html.erb within layouts/application (15.9ms)
+  Rendered layouts/_navigation.html.erb (0.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 38ms (Views: 35.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/posts/6/edit" for 127.0.0.1 at 2014-12-26 20:09:49 -0500
+Processing by PostsController#edit as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", "6"]]
+  Rendered posts/_form.html.erb (16.9ms)
+  Rendered posts/edit.html.erb within layouts/application (37.4ms)
+  Rendered layouts/_navigation.html.erb (0.4ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 75ms (Views: 53.0ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/posts/6" for 127.0.0.1 at 2014-12-26 20:10:02 -0500
+Processing by PostsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KVFjK9hCLKWDUrhokszxLFHXhnetZ8jgW1GGd0eeris=", "post"=>{"title"=>"2nd post?", "url"=>"projecteuler.net", "description"=>"Did I get updated?"}, "commit"=>"Create Post", "id"=>"6"}
+  [1m[35mPost Load (0.2ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", "6"]]
+Completed 500 Internal Server Error in 10ms
+
+ActionView::MissingTemplate (Missing template posts/update, application/update with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :raw, :ruby, :jbuilder, :coffee]}. Searched in:
+  * "/home/getthatrice/Desktop/postit-template/app/views"
+):
+  actionpack (4.0.0) lib/action_view/path_set.rb:46:in `find'
+  actionpack (4.0.0) lib/action_view/lookup_context.rb:115:in `find'
+  actionpack (4.0.0) lib/action_view/renderer/abstract_renderer.rb:18:in `find_template'
+  actionpack (4.0.0) lib/action_view/renderer/template_renderer.rb:35:in `determine_template'
+  actionpack (4.0.0) lib/action_view/renderer/template_renderer.rb:8:in `render'
+  actionpack (4.0.0) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionpack (4.0.0) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionpack (4.0.0) lib/abstract_controller/rendering.rb:127:in `_render_template'
+  actionpack (4.0.0) lib/action_controller/metal/streaming.rb:219:in `_render_template'
+  actionpack (4.0.0) lib/abstract_controller/rendering.rb:120:in `render_to_body'
+  actionpack (4.0.0) lib/action_controller/metal/rendering.rb:33:in `render_to_body'
+  actionpack (4.0.0) lib/action_controller/metal/renderers.rb:26:in `render_to_body'
+  actionpack (4.0.0) lib/abstract_controller/rendering.rb:97:in `render'
+  actionpack (4.0.0) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.0.0) lib/action_controller/metal/instrumentation.rb:41:in `block (2 levels) in render'
+  activesupport (4.0.0) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/2.1.0/benchmark.rb:294:in `realtime'
+  activesupport (4.0.0) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.0.0) lib/action_controller/metal/instrumentation.rb:41:in `block in render'
+  actionpack (4.0.0) lib/action_controller/metal/instrumentation.rb:84:in `cleanup_view_runtime'
+  activerecord (4.0.0) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.0.0) lib/action_controller/metal/instrumentation.rb:40:in `render'
+  actionpack (4.0.0) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.0.0) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.0.0) lib/abstract_controller/base.rb:189:in `process_action'
+  actionpack (4.0.0) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.0.0) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (4.0.0) lib/active_support/callbacks.rb:403:in `_run__3731220231815797253__process_action__callbacks'
+  activesupport (4.0.0) lib/active_support/callbacks.rb:80:in `run_callbacks'
+  actionpack (4.0.0) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (4.0.0) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.0.0) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.0.0) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.0.0) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.0.0) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.0.0) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.0.0) lib/action_controller/metal/params_wrapper.rb:245:in `process_action'
+  activerecord (4.0.0) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.0.0) lib/abstract_controller/base.rb:136:in `process'
+  actionpack (4.0.0) lib/abstract_controller/rendering.rb:44:in `process'
+  actionpack (4.0.0) lib/action_controller/metal.rb:195:in `dispatch'
+  actionpack (4.0.0) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.0.0) lib/action_controller/metal.rb:231:in `block in action'
+  actionpack (4.0.0) lib/action_dispatch/routing/route_set.rb:80:in `call'
+  actionpack (4.0.0) lib/action_dispatch/routing/route_set.rb:80:in `dispatch'
+  actionpack (4.0.0) lib/action_dispatch/routing/route_set.rb:48:in `call'
+  actionpack (4.0.0) lib/action_dispatch/journey/router.rb:71:in `block in call'
+  actionpack (4.0.0) lib/action_dispatch/journey/router.rb:59:in `each'
+  actionpack (4.0.0) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.0.0) lib/action_dispatch/routing/route_set.rb:655:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:35:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/flash.rb:241:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/cookies.rb:486:in `call'
+  activerecord (4.0.0) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.0.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:626:in `call'
+  activerecord (4.0.0) lib/active_record/migration.rb:369:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.0.0) lib/active_support/callbacks.rb:373:in `_run__76035767482634386__call__callbacks'
+  activesupport (4.0.0) lib/active_support/callbacks.rb:80:in `run_callbacks'
+  actionpack (4.0.0) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/reloader.rb:64:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.0) lib/rails/rack/logger.rb:21:in `block in call'
+  activesupport (4.0.0) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.0) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.0) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.0) lib/rails/rack/logger.rb:21:in `call'
+  quiet_assets (1.0.2) lib/quiet_assets.rb:18:in `call_with_quiet_assets'
+  actionpack (4.0.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.0) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.0) lib/action_dispatch/middleware/static.rb:64:in `call'
+  railties (4.0.0) lib/rails/engine.rb:511:in `call'
+  railties (4.0.0) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (1.1ms)
+
+
+Started GET "/posts/" for 127.0.0.1 at 2014-12-26 20:39:04 -0500
+Processing by PostsController#index as HTML
+  Rendered shared/_content_title.html.erb (0.5ms)
+  [1m[36mPost Load (0.6ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+  [1m[35mCategory Load (0.5ms)[0m  SELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?  [["post_id", 1]]
+  Rendered categories/_category.html.erb (0.5ms)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 1]]
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?[0m  [["post_id", 6]]
+  Rendered collection (0.0ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 6]]
+  [1m[35mCategory Load (5.5ms)[0m  SELECT "categories".* FROM "categories" INNER JOIN "post_categories" ON "categories"."id" = "post_categories"."category_id" WHERE "post_categories"."post_id" = ?  [["post_id", 7]]
+  Rendered collection (0.1ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?  [["post_id", 7]]
+  Rendered posts/index.html.erb within layouts/application (452.1ms)
+  Rendered layouts/_navigation.html.erb (0.4ms)
+  Rendered layouts/_messages.html.erb (0.3ms)
+Completed 200 OK in 627ms (Views: 534.4ms | ActiveRecord: 33.3ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2014-12-26 20:39:10 -0500
+Processing by PostsController#new as HTML
+  Rendered posts/_form.html.erb (123.3ms)
+  Rendered posts/new.html.erb within layouts/application (128.9ms)
+  Rendered layouts/_navigation.html.erb (2.9ms)
+  Rendered layouts/_messages.html.erb (6.0ms)
+Completed 200 OK in 408ms (Views: 290.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/posts" for 127.0.0.1 at 2014-12-26 20:39:20 -0500
+Processing by PostsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KVFjK9hCLKWDUrhokszxLFHXhnetZ8jgW1GGd0eeris=", "post"=>{"title"=>"", "url"=>"", "description"=>""}, "commit"=>"Create Post"}
+  [1m[36m (6.6ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  Rendered posts/_form.html.erb (19.3ms)
+  Rendered posts/new.html.erb within layouts/application (23.3ms)
+Completed 500 Internal Server Error in 114ms
+
+ActionView::Template::Error (undefined method `full_messsages' for #<ActiveModel::Errors:0x007fbac6953660>):
+    1: <% if @post.errors.any? %>
+    2:   <h5>Oops look like something isn't quite right:</h5>
+    3:   <ul>
+    4:     <% @post.errors.full_messsages.each do |msg| %>
+    5:       <li><%= msg %></li>
+    6:     <% end %>
+    7:   </ul>
+  app/views/posts/_form.html.erb:4:in `_app_views_posts__form_html_erb__430815165162643839_70220085725540'
+  app/views/posts/new.html.erb:3:in `_app_views_posts_new_html_erb___4505612706177351291_70220088428820'
+  app/controllers/posts_controller.rb:21:in `create'
+
+
+  Rendered /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (6.6ms)
+  Rendered /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (16.8ms)
+  Rendered /home/getthatrice/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (47.7ms)
+
+
+Started POST "/posts" for 127.0.0.1 at 2014-12-26 20:40:06 -0500
+Processing by PostsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KVFjK9hCLKWDUrhokszxLFHXhnetZ8jgW1GGd0eeris=", "post"=>{"title"=>"", "url"=>"", "description"=>""}, "commit"=>"Create Post"}
+  [1m[36m (14.8ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+  Rendered posts/_form.html.erb (24.4ms)
+  Rendered posts/new.html.erb within layouts/application (30.4ms)
+  Rendered layouts/_navigation.html.erb (0.7ms)
+  Rendered layouts/_messages.html.erb (0.2ms)
+Completed 200 OK in 100ms (Views: 66.3ms | ActiveRecord: 15.0ms)
+
+
+Started POST "/posts" for 127.0.0.1 at 2014-12-26 20:43:09 -0500
+Processing by PostsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KVFjK9hCLKWDUrhokszxLFHXhnetZ8jgW1GGd0eeris=", "post"=>{"title"=>"", "url"=>"", "description"=>""}, "commit"=>"Create Post"}
+  [1m[36m (17.8ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  rollback transaction
+  Rendered posts/_form.html.erb (124.7ms)
+  Rendered posts/new.html.erb within layouts/application (169.2ms)
+  Rendered layouts/_navigation.html.erb (4.7ms)
+  Rendered layouts/_messages.html.erb (1.7ms)
+Completed 200 OK in 807ms (Views: 367.3ms | ActiveRecord: 18.1ms)

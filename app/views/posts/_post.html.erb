@@ -1,0 +1,28 @@
+<div class='well span8'>
+	<p>
+	  <%= render post.categories %>
+	</p>
+
+	<%= render 'shared/content_title', title: post.title %>
+
+	<p>
+	  <%= post.description %>
+	</p>
+
+	<p>
+	  <small><%= link_to "Edit Post", edit_post_path(post)%></small>
+	</p>
+
+  <hr/>
+
+	<p>
+	  <span class='quiet'>Posted by</span> <%= post.creator.username %>
+	  <small>at <%= post.created_at %></small>
+	  
+	</p>
+	<small>
+	  <span>
+	    <%= link_to("#{pluralize(post.comments.size, 'comment')}", post_path(post)) %>
+	  </span>
+	</small>
+</div>

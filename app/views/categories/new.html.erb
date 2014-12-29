@@ -1,0 +1,14 @@
+<% if @category.errors.any? %>
+  <%= render 'shared/error_messages', obj: @category %>
+<% end %>
+
+<%= render 'shared/content_title', title: "Create a New Category" %>
+
+<div class='well'>
+  <%= form_for @category do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <br/>
+    <%= f.submit "Create Category", class: 'btn btn-primary' %>
+  <% end %>
+</div>

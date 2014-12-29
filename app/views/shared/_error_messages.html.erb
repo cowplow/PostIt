@@ -1,0 +1,11 @@
+<% if obj.errors.any? %>
+	<div class="alert alert-error"> 
+	 	<h5>Oops looks like something isn't quite right:</h5>
+	  <% #had a span8 after alert-error in solutions %>
+	  <ul>
+	    <% obj.errors.full_messages.each do |msg| %>
+	      <li><%= msg %></li>
+	    <% end %>
+	  </ul>
+	</div>
+<% end %>

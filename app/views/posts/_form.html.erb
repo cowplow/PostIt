@@ -1,25 +1,29 @@
 <% if @post.errors.any? %>
-  <div class="alert alert-error">
-    <h5>Oops look like something isn't quite right:</h5>
-    <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
+  <%= render 'shared/error_messages', obj: @post %>
 <% end %>
 
 <p>
+  <% #div control-group was added to these in the solutuion %>
   <%= form_for @post do |f| %>
     <%= f.label :title %>
-    <%= f.text_area :title %>
+    <%= f.text_field :title %>
     <br/>
+
     <%= f.label :url %>
-    <%= f.text_area :url %>
+    <%= f.text_field :url %>
     <br/>
+
     <%= f.label :description %>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, rows: 5 %>
     <br/>
-    <%= f.submit  "Create Post", class: "btn btn-primary" %> 
+
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+      <% cb.label(class: "checkbox inline") {cb.check_box(class: "checkbox") + cb.text} %>
+    <% end %>
+    <br/>
+    <% #:category_ids: are the 'value', from a collection of Category, individual id and name %>
+
+    <%= f.submit(@post.new_record? ? 'Create Post' : 'Update Post',  class: "btn btn-primary") %> 
   <% end %>
+  <% #select value requires [] for multiple, ex: <select> name=options[]</select> %>
 </p>

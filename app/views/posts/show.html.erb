@@ -1,14 +1,30 @@
-<p>
-  <%= render @post.categories %>
-</p>
+<div class='row' >
+  <%= render 'posts/post', post: @post %>
+</div> 
 
-<%= render 'shared/content_title', title: @post.title %>
 
-<p>
-  <%= @post.description %>
-</p>
 
-<p>
-	<%= link_to "Edit Post", edit_post_path(@post) %> 
-</p>
-<hr/>
+<% #comment form: form_for [@post, @comment] ...  need the parent object for nested resources %>
+
+<%= form_for [@post, @comment] do |f| %>
+  <%= render 'shared/error_messages', obj: @comment %>
+  <%= f.label :body, "Add a comment" %>
+  <%= f.text_area :body %>
+  <br/>
+  <%= f.submit "Add Comment", class: 'btn btn-success' %>
+<% end %>
+
+<h5>Comments:</h5>
+
+<% @post.comments.each do |comment| %>
+  <div class='row'>
+    <div class='well span8'>
+      <p><%= comment.body %></p>
+      <hr/>
+      <p>
+        <span class='quiet'>Posted by</span> <%= comment.creator.username %>
+        <small>at <%= comment.created_at %></small>
+      </p>
+    </div>
+  </div>
+<% end %>

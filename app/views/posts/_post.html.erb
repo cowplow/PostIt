@@ -3,7 +3,7 @@
 	  <%= render post.categories %>
 	</p>
 
-	<%= render 'shared/content_title', title: post.title %>
+	<%= link_to (render 'shared/content_title', title: post.title), fix_url(post.url) %>
 
 	<p>
 	  <%= post.description %>
@@ -17,7 +17,7 @@
 
 	<p>
 	  <span class='quiet'>Posted by</span> <%= post.creator.username %>
-	  <small>at <%= post.created_at %></small>
+	  <small>at <%= fix_date(post.created_at) %></small>
 	  
 	</p>
 	<small>

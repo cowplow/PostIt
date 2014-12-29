@@ -23,7 +23,7 @@
       <hr/>
       <p>
         <span class='quiet'>Posted by</span> <%= comment.creator.username %>
-        <small>at <%= comment.created_at %></small>
+        <small>at <%= fix_date(comment.created_at) %></small>
       </p>
     </div>
   </div>

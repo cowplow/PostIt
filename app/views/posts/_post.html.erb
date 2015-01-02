@@ -9,9 +9,13 @@
 	  <%= post.description %>
 	</p>
 
-	<p>
-	  <small><%= link_to "Edit Post", edit_post_path(post)%></small>
-	</p>
+	<% if logged_in? %>
+
+		<p>
+		  <small><%= link_to "Edit Post", edit_post_path(post)%></small>
+		</p>
+
+	<% end %>
 
   <hr/>
 

@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
 #need to define the post and comment objects here
 #comments.create = User.first
+before_action :require_user
 
   def create
     @comment = Comment.new(comment_params)

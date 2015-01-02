@@ -6,12 +6,16 @@
 
 <% #comment form: form_for [@post, @comment] ...  need the parent object for nested resources %>
 
-<%= form_for [@post, @comment] do |f| %>
-  <%= render 'shared/error_messages', obj: @comment %>
-  <%= f.label :body, "Add a comment" %>
-  <%= f.text_area :body %>
-  <br/>
-  <%= f.submit "Add Comment", class: 'btn btn-success' %>
+<% if logged_in? %>
+
+  <%= form_for [@post, @comment] do |f| %>
+    <%= render 'shared/error_messages', obj: @comment %>
+    <%= f.label :body, "Add a comment" %>
+    <%= f.text_area :body %>
+    <br/>
+    <%= f.submit "Add Comment", class: 'btn btn-success' %>
+  <% end %>
+
 <% end %>
 
 <h5>Comments:</h5>

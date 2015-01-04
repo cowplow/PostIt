@@ -7,7 +7,7 @@ before_action :require_user
     @comment = Comment.new(comment_params)
     @post = Post.find(params[:post_id])
     #@comment = @post.comments.build(comment_params)
-    @comment.creator = User.first
+    @comment.creator = current_user
 
     if @comment.save
       @post.comments << @comment #see above
@@ -15,6 +15,19 @@ before_action :require_user
       redirect_to post_path(@post)
     else
       render 'posts/show'
+    end
+  end
+
+  def vote
+    @comment = Comment.find(params[:id])
+    @vote = Vote.create(voteable: @comment, creator: current_user, vote: params[:vote])
+
+    if @vote.valid?
+      flash[:notice] = "Your vote was counted."
+      redirect_to :back
+    else
+      flash[:error] = "You have already voted on this comment."
+      redirect_to :back
     end
   end
 

@@ -1,0 +1,19 @@
+<% if @user.errors.any? %>
+  <%= render 'shared/error_messages', obj: @user %>
+<% end %>
+
+<div class='well'>
+  <%= form_for @user do |f| %>
+
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+
+    <hr/>
+
+    <%= f.submit @user.new_record? ? "Register" : "Update Profile", class: 'btn btn-primary' %>
+    
+  <% end %>
+</div>

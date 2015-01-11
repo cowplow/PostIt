@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   before_action :require_user, except: [:show, :index]
 
 
+
   def index
     @posts = Post.all.sort_by{|x| x.total_votes}.reverse
   end
@@ -21,7 +22,7 @@ class PostsController < ApplicationController
 
     if @post.save
       flash[:notice] = "Your post was created."
-      redirect_to posts_path
+      redirect_to post_path(@post)
     else
       render :new
     end
@@ -67,6 +68,7 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.find_by(slug: params[:id])
   end
+
 end

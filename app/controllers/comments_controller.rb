@@ -5,7 +5,7 @@ before_action :require_user
 
   def create
     @comment = Comment.new(comment_params)
-    @post = Post.find(params[:post_id])
+    @post = Post.find_by(slug: params[:post_id])
     #@comment = @post.comments.build(comment_params)
     @comment.creator = current_user
 

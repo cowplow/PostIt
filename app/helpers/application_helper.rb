@@ -4,7 +4,7 @@ module ApplicationHelper
     if (url.starts_with?('http://') || url.starts_with?('https://'))
       return url
     else
-       "http://www.#{url}"
+       "http://#{url}"
     end
   end
 

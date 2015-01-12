@@ -37,7 +37,7 @@
     </em>
     <hr/>
     <p>
-      <span class='quiet'>Posted by</span> <%= link_to comment.creator.username, user_path(comment.creator) %>
+      <span class='quiet'>Posted by</span> <%= link_to comment.creator.username, user_path(comment.creator.slug) %>
       <small>at <%= fix_date(comment.created_at) %></small>
     </p>
   </div>

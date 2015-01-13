@@ -41,4 +41,9 @@ class User < ActiveRecord::Base
     str
   end
 
+  def to_param
+    self.slug
+  end
+
+
 end

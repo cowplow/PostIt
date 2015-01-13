@@ -45,7 +45,7 @@
 	  <hr/>
 
 		<p>
-		  <span class='quiet'>Posted by</span> <%= link_to post.creator.username, user_path(post.creator.slug) %>
+		  <span class='quiet'>Posted by</span> <%= link_to post.creator.username, user_path(post.creator) %>
 		  <small>at <%= fix_date(post.created_at) %></small>
 		  
 		</p>

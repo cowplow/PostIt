@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   before_action :require_same_user, only: [:edit, :update]
 
   def new
+    cant_register_after_login
+    
     @user = User.new
   end
 
@@ -48,6 +50,13 @@ class UsersController < ApplicationController
   def require_same_user
     if current_user != @user
       flash[:error] = "That action is not allowed"
+      redirect_to root_path
+    end
+  end
+
+  def cant_register_after_login
+    if logged_in?
+      flash[:error] = "You are all ready registered"
       redirect_to root_path
     end
   end

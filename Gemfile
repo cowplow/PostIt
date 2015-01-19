@@ -15,6 +15,10 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'bcrypt-ruby', '~> 3.0.0'
 
+gem 'gemcutter', '~> 0.7.1'
+
+gem 'voteable_ctrembley'
+
 group :doc do
   gem 'sdoc', require: false
 end

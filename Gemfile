@@ -18,6 +18,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'gemcutter', '~> 0.7.1'
 
 gem 'voteable_ctrembley'
+gem 'slugable_ctrembley', '~> 0.0.1'
 
 group :doc do
   gem 'sdoc', require: false

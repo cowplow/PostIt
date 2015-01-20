@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :vote]
   before_action :require_user, except: [:show, :index]
+  before_action :can_edit?, only: [:edit, :update]
 
 
 
@@ -10,6 +11,14 @@ class PostsController < ApplicationController
 
   def show
     @comment = Comment.new
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: @post
+      end
+      format.xml { render xml: @post }
+    end
+    
   end
 
   def new
@@ -69,6 +78,13 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find_by(slug: params[:id])
+  end
+
+  def can_edit?
+    if current_user != @post.creator && !current_user.is_admin?
+      flash[:error] = "Sorry you can not perform that action."
+      redirect_to post_path(@post)
+    end 
   end
 
 end

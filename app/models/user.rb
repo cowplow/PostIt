@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  include Slugable
+  include SlugableCtrembley
 
   has_many :posts
   has_many :comments
@@ -10,6 +10,10 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
   validates :password, presence: true, on: :create, length: {minimum: 5}
 
-  after_validation :generate_slug!
+  slugable_column :username
+
+  def is_admin?
+    self.role == 'admin'
+  end
 
 end

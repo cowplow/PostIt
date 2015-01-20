@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
   include VoteableCtrembley
-  include Slugable
+  include SlugableCtrembley
 
   belongs_to :creator, foreign_key: 'user_id', class_name: 'User'
   has_many :comments
@@ -11,6 +11,6 @@ class Post < ActiveRecord::Base
   validates :description, presence: true
   validates :url, presence: true, uniqueness: true
 
-  after_validation :generate_slug!
+  slugable_column :title
 
 end

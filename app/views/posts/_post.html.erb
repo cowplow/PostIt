@@ -34,7 +34,7 @@
 		  <%= post.description %>
 		</p>
 
-		<% if logged_in? %>
+		<% if logged_in? && (current_user == post.creator || current_user.is_admin?) %>
 
 			<p>
 			  <small><%= link_to "Edit Post", edit_post_path(post)%></small>
